@@ -22,11 +22,11 @@ export function Navbar() {
           </div>
           
           <div className="flex items-center space-x-8">
-            <Link to="/articles" className="text-gray-300 hover:text-white">บทความ</Link>
-            <Link to="/status" className="text-gray-300 hover:text-white">สถานะ</Link>
-            <Link to="/novels" className="text-gray-300 hover:text-white">นิยาย</Link>
-            <Link to="/news" className="text-gray-300 hover:text-white">ข่าว</Link>
-            <Link to="/about" className="text-gray-300 hover:text-white">เกี่ยวกับเรา</Link>
+            <Link to="/articles" className="text-gray-300 hover:text-white">Articles</Link>
+            <Link to="/novels" className="text-gray-300 hover:text-white">Novels</Link>
+            <Link to="/news" className="text-gray-300 hover:text-white">News</Link>
+            <Link to="/about" className="text-gray-300 hover:text-white">About</Link>
+            <Link to="/status" className="text-gray-300 hover:text-white">Posts</Link>
             <Search className="h-5 w-5 text-gray-300 hover:text-white cursor-pointer" />
             {user ? (
               <div className="relative">

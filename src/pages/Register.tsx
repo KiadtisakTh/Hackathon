@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import bcrypt from 'bcryptjs';  // นำเข้า bcrypt สำหรับการเข้ารหัสรหัสผ่าน
 
 export function Register() {
   const [formData, setFormData] = useState({
@@ -22,61 +21,66 @@ export function Register() {
     if (loading) return;
     setLoading(true);
     setError(null);
-
+  
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match!');
       setLoading(false);
       return;
     }
-
+  
     if (!formData.termsAccepted) {
       setError('You must accept the terms and conditions');
       setLoading(false);
       return;
     }
-
+  
     try {
-      // ตรวจสอบว่าอีเมลที่กรอกมีอยู่ในฐานข้อมูลแล้วหรือยัง
-      const { data: existingUser, error: emailCheckError } = await supabase
+      // ตรวจสอบว่าอีเมลนี้ถูกใช้งานแล้วในตาราง auth.users
+      const { data: userCheck } = await supabase
         .from('users')
         .select('email')
         .eq('email', formData.email)
         .single();
-
-      if (emailCheckError) {
-        setError('Error checking email: ' + emailCheckError.message);
-        setLoading(false);
-        return;
-      }
-
-      if (existingUser) {
+  
+      if (userCheck) {
         setError('This email is already registered. Please use a different email address.');
         setLoading(false);
         return;
       }
-
-      // เข้ารหัสรหัสผ่านก่อนบันทึก
-      const hashedPassword = await bcrypt.hash(formData.password, 10);
-
-      // แทรกข้อมูลผู้ใช้ลงในตาราง 'users' โดยใช้รหัสผ่านที่ถูกเข้ารหัสแล้ว
-      const { error } = await supabase
-        .from('users')
-        .insert([
-          {
-            email: formData.email,
-            password: hashedPassword,  // ใช้รหัสผ่านที่ถูกเข้ารหัส
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            date_of_birth: formData.dateOfBirth,
-          }
-        ]);
-
-      if (error) {
-        setError(`Error creating user: ${error.message}`);
+  
+      // ลงทะเบียนผู้ใช้โดยใช้ Supabase authentication
+      const { data: { user }, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password
+      });
+  
+      if (signUpError) {
+        setError(signUpError.message);
         setLoading(false);
         return;
       }
-
+  
+      // บันทึกข้อมูลโปรไฟล์ในตาราง profiles
+      const { error: insertError } = await supabase
+      .from('users')  // Change to 'users' table
+      .insert([
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          date_of_birth: formData.dateOfBirth,
+          password: formData.password // or hashed password if required
+        }
+      ]);
+    
+  
+      if (insertError) {
+        console.error('Error saving profile:', insertError);
+        setError(`Error saving profile: ${insertError.message}`);
+        setLoading(false);
+        return;
+      }
+  
       alert('Registration successful!');
     } catch (err) {
       console.error('Unexpected error:', err);
@@ -85,6 +89,7 @@ export function Register() {
       setLoading(false);
     }
   };
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
