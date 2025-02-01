@@ -1,2 +1,8 @@
 # Hackathon
 Bolt Hackathon 2025
+
+กรณีหน้าเว็บขาว ให้สร้างไฟล์ .env 
+แล้วแปะโค้ดนี้
+
+VITE_SUPABASE_URL=https://ryqzppkvjrfugmigpgxw.supabase.co/
+VITE_SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5cXpwcGt2anJmdWdtaWdwZ3h3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyOTQyODAsImV4cCI6MjA1Mzg3MDI4MH0.2_3Kqf_9X4Dsf2kkCVIAtbIFSVwv2M4Jz5uqPoMXtgA
