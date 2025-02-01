@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  Search, User, ChevronDown } from 'lucide-react';
+import { Search, User, ChevronDown } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export function Navbar() {
@@ -12,7 +12,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gray-900/60 backdrop-blur-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-gray-900 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -25,7 +25,6 @@ export function Navbar() {
             <Link to="/articles" className="text-gray-300 hover:text-white">Articles</Link>
             <Link to="/novels" className="text-gray-300 hover:text-white">Novels</Link>
             <Link to="/news" className="text-gray-300 hover:text-white">News</Link>
-            <Link to="/about" className="text-gray-300 hover:text-white">About</Link>
             <Link to="/status" className="text-gray-300 hover:text-white">Posts</Link>
             <Search className="h-5 w-5 text-gray-300 hover:text-white cursor-pointer" />
             {user ? (
