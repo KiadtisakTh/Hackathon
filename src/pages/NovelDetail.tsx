@@ -10,6 +10,7 @@ export function NovelDetail() {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(1);
   const [currentChapter, setCurrentChapter] = useState(0);
+  const [chapterNotes, setChapterNotes] = useState<{ [key: number]: string }>({});
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const novel = getNovelById(parseInt(id || '0'));
@@ -71,6 +72,13 @@ export function NovelDetail() {
     if (audioRef.current) {
       audioRef.current.currentTime = time;
     }
+  };
+
+  const handleNoteChange = (chapterId: number, note: string) => {
+    setChapterNotes(prev => ({
+      ...prev,
+      [chapterId]: note
+    }));
   };
 
   const formatTime = (time: number) => {
@@ -198,25 +206,36 @@ export function NovelDetail() {
           <h2 className="text-xl font-semibold mb-4">รายการตอน</h2>
           <div className="space-y-4">
             {chapters.map((chapter, index) => (
-              <button
+              <div
                 key={chapter.id}
-                onClick={() => setCurrentChapter(index)}
-                className={`w-full text-left p-4 rounded-lg transition-colors ${
+                className={`p-4 rounded-lg transition-colors ${
                   currentChapter === index
                     ? 'bg-blue-50 border border-blue-200'
                     : 'hover:bg-gray-50'
                 }`}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-2">
                   <div>
                     <h3 className="font-medium">{chapter.title}</h3>
                     <p className="text-sm text-gray-500">ความยาว: {chapter.duration}</p>
                   </div>
-                  {currentChapter === index && isPlaying && (
-                    <div className="text-blue-600">กำลังเล่น</div>
-                  )}
+                  <button
+                    onClick={() => setCurrentChapter(index)}
+                    className="text-blue-600 hover:text-blue-700"
+                  >
+                    {currentChapter === index && isPlaying ? 'กำลังเล่น' : 'เล่น'}
+                  </button>
                 </div>
-              </button>
+                <div className="mt-2">
+                  <textarea
+                    placeholder="เพิ่มโน้ตของคุณที่นี่..."
+                    value={chapterNotes[chapter.id] || ''}
+                    onChange={(e) => handleNoteChange(chapter.id, e.target.value)}
+                    className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    rows={3}
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
