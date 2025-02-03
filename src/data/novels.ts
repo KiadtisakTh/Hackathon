@@ -1,3 +1,5 @@
+import { Novel } from './types';
+
 export interface Novel {
   id: number;
   title: string;
@@ -23,7 +25,7 @@ export const novels: Record<string, Novel[]> = {
       chapters: 15,
       views: 32200,
       lastUpdated: '2024-03-15',
-      description: 'A captivating love story that will keep you hooked until the end'
+      description: 'Emma never expected to find love in her small coffee shop on the corner of Sukhumvit Road. When Kai, a charming architect, becomes a regular customer, their daily interactions slowly bloom into something more. Between steaming lattes and shared smiles, they discover that sometimes the greatest love stories aren\'t written in grand gestures, but in the quiet moments of genuine connection.'
     },
     {
       id: 2,
@@ -458,6 +460,230 @@ export const novels: Record<string, Novel[]> = {
       category: 'Drama',
       chapters: 24,
       views: 60100,
+      lastUpdated: '2024-03-06'
+    }
+  ],
+  'Fantasy': [
+    {
+      id: 601,
+      title: 'The Crystal Kingdom',
+      author: 'Elena Blackwood',
+      cover: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23',
+      rating: 4.8,
+      category: 'Fantasy',
+      chapters: 25,
+      views: 68400,
+      lastUpdated: '2024-03-15'
+    },
+    {
+      id: 602,
+      title: 'Dragon\'s Breath',
+      author: 'Marcus Storm',
+      cover: 'https://images.unsplash.com/photo-1500964757637-c85e8a162699',
+      rating: 4.7,
+      category: 'Fantasy',
+      chapters: 30,
+      views: 72100,
+      lastUpdated: '2024-03-14'
+    },
+    {
+      id: 603,
+      title: 'The Enchanted Forest',
+      author: 'Isabella Moon',
+      cover: 'https://images.unsplash.com/photo-1448375240586-882707db888b',
+      rating: 4.9,
+      category: 'Fantasy',
+      chapters: 28,
+      views: 65800,
+      lastUpdated: '2024-03-13'
+    },
+    {
+      id: 604,
+      title: 'Wizard\'s Path',
+      author: 'Thomas Spellman',
+      cover: 'https://images.unsplash.com/photo-1516541196182-6bdb0516ed27',
+      rating: 4.6,
+      category: 'Fantasy',
+      chapters: 22,
+      views: 59300,
+      lastUpdated: '2024-03-12'
+    },
+    {
+      id: 605,
+      title: 'The Phoenix Rising',
+      author: 'Aurora Flame',
+      cover: 'https://images.unsplash.com/photo-1507290439931-a861b5a38200',
+      rating: 4.8,
+      category: 'Fantasy',
+      chapters: 26,
+      views: 67200,
+      lastUpdated: '2024-03-11'
+    },
+    {
+      id: 606,
+      title: 'Realm of Shadows',
+      author: 'Derek Night',
+      cover: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23',
+      rating: 4.7,
+      category: 'Fantasy',
+      chapters: 24,
+      views: 63400,
+      lastUpdated: '2024-03-10'
+    },
+    {
+      id: 607,
+      title: 'The Unicorn\'s Tale',
+      author: 'Sarah Starling',
+      cover: 'https://images.unsplash.com/photo-1490253013138-13ce8db481a5',
+      rating: 4.5,
+      category: 'Fantasy',
+      chapters: 20,
+      views: 58900,
+      lastUpdated: '2024-03-09'
+    },
+    {
+      id: 608,
+      title: 'Mystic Mountains',
+      author: 'Robert Peak',
+      cover: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
+      rating: 4.6,
+      category: 'Fantasy',
+      chapters: 23,
+      views: 61200,
+      lastUpdated: '2024-03-08'
+    },
+    {
+      id: 609,
+      title: 'The Fairy Queen',
+      author: 'Luna Silver',
+      cover: 'https://images.unsplash.com/photo-1502136969935-8d8eef54d77b',
+      rating: 4.8,
+      category: 'Fantasy',
+      chapters: 27,
+      views: 69800,
+      lastUpdated: '2024-03-07'
+    },
+    {
+      id: 610,
+      title: 'The Last Sorcerer',
+      author: 'Magnus Wise',
+      cover: 'https://images.unsplash.com/photo-1534447677768-be436bb09401',
+      rating: 4.7,
+      category: 'Fantasy',
+      chapters: 25,
+      views: 64500,
+      lastUpdated: '2024-03-06'
+    }
+  ],
+  'Mystery': [
+    {
+      id: 701,
+      title: 'The Silent Witness',
+      author: 'Victoria Blake',
+      cover: 'https://images.unsplash.com/photo-1516387938699-a93567ec168e',
+      rating: 4.8,
+      category: 'Mystery',
+      chapters: 22,
+      views: 71200,
+      lastUpdated: '2024-03-15'
+    },
+    {
+      id: 702,
+      title: 'Dark Alley',
+      author: 'James Shadow',
+      cover: 'https://images.unsplash.com/photo-1519074069444-1ba4fff66d16',
+      rating: 4.7,
+      category: 'Mystery',
+      chapters: 24,
+      views: 68900,
+      lastUpdated: '2024-03-14'
+    },
+    {
+      id: 703,
+      title: 'The Last Letter',
+      author: 'Emily Frost',
+      cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794',
+      rating: 4.9,
+      category: 'Mystery',
+      chapters: 26,
+      views: 73400,
+      lastUpdated: '2024-03-13'
+    },
+    {
+      id: 704,
+      title: 'Vanishing Point',
+      author: 'Michael Cross',
+      cover: 'https://images.unsplash.com/photo-1517373116369-9bdb8cdc9f62',
+      rating: 4.6,
+      category: 'Mystery',
+      chapters: 20,
+      views: 65700,
+      lastUpdated: '2024-03-12'
+    },
+    {
+      id: 705,
+      title: 'The Locked Room',
+      author: 'Sophie Keys',
+      cover: 'https://images.unsplash.com/photo-1505662695181-d4b60363d2a3',
+      rating: 4.8,
+      category: 'Mystery',
+      chapters: 23,
+      views: 70100,
+      lastUpdated: '2024-03-11'
+    },
+    {
+      id: 706,
+      title: 'Missing Pieces',
+      author: 'Daniel Hunt',
+      cover: 'https://images.unsplash.com/photo-1516387938699-a93567ec168e',
+      rating: 4.7,
+      category: 'Mystery',
+      chapters: 21,
+      views: 67800,
+      lastUpdated: '2024-03-10'
+    },
+    {
+      id: 707,
+      title: 'The Detective\'s Diary',
+      author: 'Rachel Clue',
+      cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794',
+      rating: 4.5,
+      category: 'Mystery',
+      chapters: 25,
+      views: 69200,
+      lastUpdated: '2024-03-09'
+    },
+    {
+      id: 708,
+      title: 'Midnight Murder',
+      author: 'Alex Night',
+      cover: 'https://images.unsplash.com/photo-1519074069444-1ba4fff66d16',
+      rating: 4.6,
+      category: 'Mystery',
+      chapters: 24,
+      views: 66500,
+      lastUpdated: '2024-03-08'
+    },
+    {
+      id: 709,
+      title: 'The Cold Case',
+      author: 'Laura Winters',
+      cover: 'https://images.unsplash.com/photo-1517373116369-9bdb8cdc9f62',
+      rating: 4.8,
+      category: 'Mystery',
+      chapters: 27,
+      views: 72300,
+      lastUpdated: '2024-03-07'
+    },
+    {
+      id: 710,
+      title: 'Hidden Secrets',
+      author: 'Mark Truth',
+      cover: 'https://images.unsplash.com/photo-1505662695181-d4b60363d2a3',
+      rating: 4.7,
+      category: 'Mystery',
+      chapters: 22,
+      views: 68100,
       lastUpdated: '2024-03-06'
     }
   ]
