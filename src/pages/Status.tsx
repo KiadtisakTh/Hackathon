@@ -17,54 +17,54 @@ interface Status {
 
 export function Status() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('ทั้งหมด');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['ทั้งหมด', 'ทั่วไป', 'รีวิว', 'คำถาม', 'แนะนำ'];
+  const categories = ['All', 'General', 'Review', 'Question', 'Recommendation'];
 
   const statuses: Status[] = [
     {
       id: 1,
       user: {
-        name: 'สมชาย ใจดี',
+        name: 'John Smith',
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e'
       },
-      content: 'เพิ่งฟังนิยายเสียงเรื่อง "เงาจันทร์" จบไป สุดยอดมากครับ เนื้อเรื่องสนุก การบรรยายเยี่ยม แนะนำเลยครับ',
+      content: 'Just finished listening to "Moonlight Shadow". Absolutely amazing! The storytelling and narration are top-notch. Highly recommended!',
       image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c',
       timestamp: '2024-03-15T10:30:00',
       likes: 245,
       comments: 42,
-      category: 'รีวิว'
+      category: 'Review'
     },
     {
       id: 2,
       user: {
-        name: 'สมหญิง รักดี',
+        name: 'Emma Davis',
         avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80'
       },
-      content: 'มีใครมีนิยายเสียงแนวแฟนตาซีแนะนำบ้างคะ? กำลังหาเรื่องใหม่ฟังอยู่',
+      content: 'Any recommendations for fantasy audiobooks? Looking for something new to listen to!',
       timestamp: '2024-03-15T09:15:00',
       likes: 156,
       comments: 38,
-      category: 'คำถาม'
+      category: 'Question'
     },
     {
       id: 3,
       user: {
-        name: 'วิชัย เก่งกาจ',
+        name: 'William Turner',
         avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e'
       },
-      content: 'แนะนำนิยายเสียงเรื่อง "ราชันย์มังกร" ครับ เพิ่งออกใหม่ เสียงชัด เนื้อเรื่องสนุกมาก',
+      content: 'Check out "The Dragon King" - a new release with excellent audio quality and engaging story.',
       image: 'https://images.unsplash.com/photo-1500964757637-c85e8a162699',
       timestamp: '2024-03-15T08:45:00',
       likes: 324,
       comments: 56,
-      category: 'แนะนำ'
+      category: 'Recommendation'
     }
   ];
 
   const filteredStatuses = statuses.filter(status => {
     const matchesSearch = status.content.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'ทั้งหมด' || status.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'All' || status.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -76,7 +76,7 @@ export function Status() {
           <div className="relative mb-4">
             <input
               type="text"
-              placeholder="ค้นหาสถานะ..."
+              placeholder="Search posts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -111,13 +111,13 @@ export function Status() {
             />
             <input
               type="text"
-              placeholder="คุณกำลังคิดอะไรอยู่..."
+              placeholder="What's on your mind?"
               className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex justify-end">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-              โพสต์
+              Post
             </button>
           </div>
         </div>
@@ -137,7 +137,7 @@ export function Status() {
                     <h3 className="font-semibold">{status.user.name}</h3>
                     <div className="flex items-center text-sm text-gray-500">
                       <Clock className="h-4 w-4 mr-1" />
-                      {new Date(status.timestamp).toLocaleString('th-TH')}
+                      {new Date(status.timestamp).toLocaleString()}
                     </div>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export function Status() {
                   </button>
                 </div>
                 <button className="text-blue-600 hover:text-blue-700">
-                  แสดงความคิดเห็น
+                  Add Comment
                 </button>
               </div>
             </div>

@@ -21,7 +21,7 @@ export function Hero() {
               Unlocking The World For Everyone To Explore
             </h1>
             <p className="text-lg text-gray-600 mb-2">
-              "เปิดประตูสู่โลกกว้างให้ทุกคนได้สัมผัส"
+              "Opening doors to a wider world for everyone to experience"
             </p>
             <p className="text-gray-600 mb-6">
               Welcome to Premium Content Audio. Your daily dose of news, insights, and entertainment is just a click away.

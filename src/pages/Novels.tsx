@@ -7,12 +7,12 @@ export function Novels() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    'นิยายรัก',
-    'นิยายโรมานซ์',
-    'นิยายรักวัยรุ่น',
-    'นิยายแฟนตาซี',
-    'นิยายสืบสวน',
-    'นิยายดราม่า'
+    'Romance',
+    'Fantasy',
+    'Mystery',
+    'Science Fiction',
+    'Adventure',
+    'Drama'
   ];
 
   const filteredNovels = (category: string) => {
@@ -29,7 +29,7 @@ export function Novels() {
         <div className="relative w-full max-w-xl mx-auto mb-8">
           <input
             type="text"
-            placeholder="ค้นหานิยาย..."
+            placeholder="Search novels..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
@@ -46,7 +46,7 @@ export function Novels() {
                 to={`/category/${encodeURIComponent(category)}`} 
                 className="flex items-center text-blue-600 hover:text-blue-700"
               >
-                ดูทั้งหมด
+                View All
                 <ChevronRight className="h-5 w-5 ml-1" />
               </Link>
             </div>
