@@ -27,33 +27,6 @@ export function Hero() {
     },
   ];
 
-  const newsBoxes = [
-    {
-      number: 1,
-      title: 'นายกฯ ประกาศนโยบายใหม่',
-      subtitle: 'การพัฒนาประเทศ',
-      views: '45.2K'
-    },
-    {
-      number: 2,
-      title: 'ราคาทองพุ่งทำสถิติใหม่',
-      subtitle: 'เศรษฐกิจการเงิน',
-      views: '38.9K'
-    },
-    {
-      number: 3,
-      title: 'ทีมชาติไทยคว้าแชมป์',
-      subtitle: 'กีฬา',
-      views: '52.1K'
-    },
-    {
-      number: 4,
-      title: 'พายุฝนถล่มภาคใต้',
-      subtitle: 'สภาพอากาศ',
-      views: '33.7K'
-    }
-  ];
-
   const topTenItems = [
     {
       id: 1,
@@ -182,37 +155,10 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Box 2: News Boxes */}
-      <div className="relative bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold">กระแสแรงตอนนี้</h2>
-            <div className="flex space-x-2">
-              <button onClick={prevSlide} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button onClick={nextSlide} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-          <div className="grid grid-cols-4 gap-6">
-            {newsBoxes.map((item) => (
-              <div key={item.number} className="bg-gray-100 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                <div className="text-4xl font-bold text-blue-600 mb-3">{item.number}</div>
-                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-600 mb-2">{item.subtitle}</p>
-                <div className="text-sm text-blue-600">{item.views} views</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Box 3: Top 10 Section */}
       <div className="bg-gray-900 py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white mb-8">10 อันดับ</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">กระแสมาแรงตอนนี้</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {topTenItems.map((item) => (
               <div key={item.id} className="bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, Pause, SkipBack, SkipForward, Volume2, Star, BookOpen, Clock, User, ChevronLeft } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, Star, BookOpen, Clock, User, ChevronLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import { getNovelById } from '../data/novels';
 
 export function NovelDetail() {
@@ -11,6 +11,7 @@ export function NovelDetail() {
   const [volume, setVolume] = useState(1);
   const [currentChapter, setCurrentChapter] = useState(0);
   const [chapterNotes, setChapterNotes] = useState<{ [key: number]: string }>({});
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const novel = getNovelById(parseInt(id || '0'));
@@ -87,6 +88,10 @@ export function NovelDetail() {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  const toggleDescription = () => {
+    setIsDescriptionExpanded(!isDescriptionExpanded);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,7 +139,24 @@ export function NovelDetail() {
                   <span>{novel.views.toLocaleString()} views</span>
                 </div>
               </div>
-              <p className="text-gray-600 mb-6">{novel.description || 'ไม่มีคำอธิบายเพิ่มเติม'}</p>
+              
+              {/* Collapsible Description */}
+              <div className="border rounded-lg p-4 bg-gray-50">
+                <button
+                  onClick={toggleDescription}
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  <span className="font-semibold">เรื่องย่อ</span>
+                  {isDescriptionExpanded ? (
+                    <ChevronUp className="h-5 w-5" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5" />
+                  )}
+                </button>
+                {isDescriptionExpanded && (
+                  <p className="text-gray-600 mt-4">{novel.description || 'ไม่มีคำอธิบายเพิ่มเติม'}</p>
+                )}
+              </div>
             </div>
           </div>
 
