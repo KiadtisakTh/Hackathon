@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -7,21 +7,21 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const recommendedItems = [
-    { 
-      title: 'ซายาโนะ', 
-      category: 'นิยายรัก', 
+    {
+      title: 'ซายาโนะ',
+      category: 'นิยายรัก',
       image: 'https://images.unsplash.com/photo-1519791883288-dc8bd696e667',
       description: 'เรื่องราวความรักของซายาโนะ สาวน้อยผู้มีความฝันอันยิ่งใหญ่'
     },
-    { 
-      title: 'ภูติในม่านหมอก', 
-      category: 'แฟนตาซี', 
+    {
+      title: 'ภูติในม่านหมอก',
+      category: 'แฟนตาซี',
       image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d',
       description: 'การผจญภัยในดินแดนแห่งภูติที่ซ่อนตัวอยู่ในม่านหมอก'
     },
-    { 
-      title: 'บอสมินิ', 
-      category: 'สืบสวน', 
+    {
+      title: 'บอสมินิ',
+      category: 'สืบสวน',
       image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794',
       description: 'เรื่องราวของนักสืบสาวผู้ไขคดีปริศนาในเมืองใหญ่'
     },
@@ -125,12 +125,20 @@ export function Hero() {
     setCurrentSlide((prev) => (prev - 1 + recommendedItems.length) % recommendedItems.length);
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="relative min-h-screen flex flex-col bg-navy-900">
       {/* Box 1: Hero Content */}
       <div className="relative h-screen flex items-center">
         <div className="absolute inset-0">
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1614607242094-b1b2cf769ff3"
             alt="Background"
             className="w-full h-full object-cover"
@@ -150,6 +158,51 @@ export function Hero() {
             </p>
             <button className="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors">
               Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Box 2: Recommended Section */}
+      <div className="relative bg-gray-800 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white mb-8">แนะนำสำหรับคุณ</h2>
+          <div className="relative">
+            <div className="overflow-hidden rounded-lg">
+              <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                {recommendedItems.map((item, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="relative h-96">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center">
+                        <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
+                        <p className="text-gray-300 mb-4">{item.description}</p>
+                        <Link to="/novels" className="text-blue-400 hover:text-blue-300">
+                          อ่านเพิ่มเติม
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={prevSlide}
+              className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+            >
+              <ChevronRight className="h-6 w-6" />
             </button>
           </div>
         </div>
@@ -212,8 +265,8 @@ export function Hero() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              We believe in creating opportunities for everyone to access quality content anytime, anywhere. 
-              With cutting-edge technology and a professional team, we are committed to developing and delivering 
+              We believe in creating opportunities for everyone to access quality content anytime, anywhere.
+              With cutting-edge technology and a professional team, we are committed to developing and delivering
               the best experience for our users.
             </p>
           </div>
