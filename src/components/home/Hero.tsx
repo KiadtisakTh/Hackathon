@@ -7,9 +7,141 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const recommendedItems = [
-    { title: 'ซายาโนะ', category: 'นิยายรัก', image: 'https://images.unsplash.com/photo-1519791883288-dc8bd696e667' },
-    { title: 'ภูติในม่านหมอก', category: 'แฟนตาซี', image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d' },
-    { title: 'บอสมินิ', category: 'สืบสวน', image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794' },
+    { 
+      title: 'ซายาโนะ', 
+      category: 'นิยายรัก', 
+      image: 'https://images.unsplash.com/photo-1519791883288-dc8bd696e667',
+      description: 'เรื่องราวความรักของซายาโนะ สาวน้อยผู้มีความฝันอันยิ่งใหญ่'
+    },
+    { 
+      title: 'ภูติในม่านหมอก', 
+      category: 'แฟนตาซี', 
+      image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d',
+      description: 'การผจญภัยในดินแดนแห่งภูติที่ซ่อนตัวอยู่ในม่านหมอก'
+    },
+    { 
+      title: 'บอสมินิ', 
+      category: 'สืบสวน', 
+      image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794',
+      description: 'เรื่องราวของนักสืบสาวผู้ไขคดีปริศนาในเมืองใหญ่'
+    },
+  ];
+
+  const newsBoxes = [
+    {
+      number: 1,
+      title: 'นายกฯ ประกาศนโยบายใหม่',
+      subtitle: 'การพัฒนาประเทศ',
+      views: '45.2K'
+    },
+    {
+      number: 2,
+      title: 'ราคาทองพุ่งทำสถิติใหม่',
+      subtitle: 'เศรษฐกิจการเงิน',
+      views: '38.9K'
+    },
+    {
+      number: 3,
+      title: 'ทีมชาติไทยคว้าแชมป์',
+      subtitle: 'กีฬา',
+      views: '52.1K'
+    },
+    {
+      number: 4,
+      title: 'พายุฝนถล่มภาคใต้',
+      subtitle: 'สภาพอากาศ',
+      views: '33.7K'
+    }
+  ];
+
+  const topTenItems = [
+    {
+      id: 1,
+      title: 'เทคโนโลยี AI กับการศึกษาไทย',
+      category: 'เทคโนโลยี',
+      image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c',
+      views: '89.5K'
+    },
+    {
+      id: 2,
+      title: 'วิกฤตโลกร้อนกับการเกษตร',
+      category: 'สิ่งแวดล้อม',
+      image: 'https://images.unsplash.com/photo-1500964757637-c85e8a162699',
+      views: '76.2K'
+    },
+    {
+      id: 3,
+      title: 'อนาคตการท่องเที่ยวไทย',
+      category: 'ท่องเที่ยว',
+      image: 'https://images.unsplash.com/photo-1528181304800-259b08848526',
+      views: '65.8K'
+    },
+    {
+      id: 4,
+      title: 'ตลาดคริปโตกับคนรุ่นใหม่',
+      category: 'การเงิน',
+      image: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d',
+      views: '58.3K'
+    },
+    {
+      id: 5,
+      title: 'วัฒนธรรมอาหารไทยสู่สากล',
+      category: 'วัฒนธรรม',
+      image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e',
+      views: '52.9K'
+    },
+    {
+      id: 6,
+      title: 'การแพทย์ไทยก้าวไกลระดับโลก',
+      category: 'สุขภาพ',
+      image: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c',
+      views: '47.4K'
+    }
+  ];
+
+  const blogItems = [
+    {
+      title: 'อนาคตการศึกษาไทยในยุคดิจิทัล',
+      category: 'EDUCATION',
+      views: '25.3K',
+      comments: '152',
+      excerpt: 'การเปลี่ยนแปลงของระบบการศึกษาไทยในยุคดิจิทัล การปรับตัวของครูและนักเรียน...'
+    },
+    {
+      title: 'เศรษฐกิจไทยกับการฟื้นตัวหลังโควิด',
+      category: 'ECONOMY',
+      views: '18.7K',
+      comments: '98',
+      excerpt: 'วิเคราะห์แนวโน้มการฟื้นตัวของเศรษฐกิจไทยหลังสถานการณ์โควิด-19...'
+    },
+    {
+      title: 'นวัตกรรมการเกษตรเพื่อความยั่งยืน',
+      category: 'AGRICULTURE',
+      views: '15.9K',
+      comments: '86',
+      excerpt: 'เทคโนโลยีและนวัตกรรมใหม่ในภาคการเกษตร เพื่อความยั่งยืนและผลผลิตที่ดีขึ้น...'
+    },
+    {
+      title: 'การท่องเที่ยวไทยรูปแบบใหม่',
+      category: 'TOURISM',
+      views: '22.1K',
+      comments: '134',
+      excerpt: 'แนวทางการท่องเที่ยวรูปแบบใหม่ที่ตอบโจทย์นักท่องเที่ยวยุคปัจจุบัน...'
+    },
+    {
+      title: 'พลังงานสะอาดเพื่ออนาคต',
+      category: 'ENVIRONMENT',
+      views: '19.5K',
+      comments: '112',
+      excerpt: 'การพัฒนาพลังงานสะอาดในประเทศไทย และผลกระทบต่อสิ่งแวดล้อม...'
+    },
+    {
+      title: 'วัฒนธรรมไทยในสายตาชาวโลก',
+      category: 'CULTURE',
+      views: '16.8K',
+      comments: '94',
+      excerpt: 'มุมมองของชาวต่างชาติที่มีต่อวัฒนธรรมไทย และการเผยแพร่สู่สากล...'
+    }
   ];
 
   const nextSlide = () => {
@@ -50,7 +182,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Box 2: Carousel Section */}
+      {/* Box 2: News Boxes */}
       <div className="relative bg-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
@@ -65,11 +197,12 @@ export function Hero() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((num) => (
-              <div key={num} className="bg-gray-100 rounded-lg p-4 text-center">
-                <div className="text-4xl font-bold mb-2">{num}</div>
-                <h3 className="font-semibold mb-1">แสดงมีมีชู</h3>
-                <p className="text-sm text-gray-600">จริงหรือไม่?</p>
+            {newsBoxes.map((item) => (
+              <div key={item.number} className="bg-gray-100 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="text-4xl font-bold text-blue-600 mb-3">{item.number}</div>
+                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600 mb-2">{item.subtitle}</p>
+                <div className="text-sm text-blue-600">{item.views} views</div>
               </div>
             ))}
           </div>
@@ -81,17 +214,18 @@ export function Hero() {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-8">10 อันดับ</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
-              <div key={index} className="bg-gray-800 rounded-lg overflow-hidden">
+            {topTenItems.map((item) => (
+              <div key={item.id} className="bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c"
-                  alt={`Top ${index + 1}`}
+                  src={item.image}
+                  alt={item.title}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
-                  <span className="text-gray-400 text-sm">#{index + 1}</span>
-                  <h3 className="text-white text-lg font-semibold mt-1">Title {index + 1}</h3>
-                  <p className="text-gray-400">Category</p>
+                  <span className="text-gray-400 text-sm">#{item.id}</span>
+                  <h3 className="text-white text-lg font-semibold mt-1">{item.title}</h3>
+                  <p className="text-gray-400">{item.category}</p>
+                  <div className="mt-2 text-sm text-gray-500">{item.views} views</div>
                 </div>
               </div>
             ))}
@@ -104,19 +238,19 @@ export function Hero() {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8">Blog แนะนำ</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            {blogItems.map((item, index) => (
+              <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="p-4">
                   <span className="inline-block bg-orange-500 text-white px-2 py-1 rounded text-sm mb-2">
-                    GOVERNMENT
+                    {item.category}
                   </span>
-                  <h3 className="text-lg font-semibold mb-2">นายกคนปัจจุบันดีหรือไม่?</h3>
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                   <div className="flex items-center text-sm text-gray-500">
-                    <span className="mr-2">20.9K</span>
-                    <span>100</span>
+                    <span className="mr-2">{item.views}</span>
+                    <span>{item.comments}</span>
                   </div>
                   <p className="text-gray-600 mt-2">
-                    เพราะนายกปัจจุบันแบบว่าไม่ค่อยโดดเด่นเลย แก้ปัญหาไม่ค่อยได้ ผลงานก็ไม่ค่อยดี...
+                    {item.excerpt}
                   </p>
                 </div>
               </div>
