@@ -15,26 +15,26 @@ interface NewsItem {
 
 export function News() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('ทั้งหมด');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = [
-    'ทั้งหมด',
-    'กีฬา',
-    'เทคโนโลยี',
-    'บันเทิง',
-    'การเงิน',
-    'การศึกษา',
-    'สุขภาพ'
+    'All',
+    'Sports',
+    'Technology',
+    'Entertainment',
+    'Finance',
+    'Education',
+    'Health'
   ];
 
   const newsItems: NewsItem[] = [
     // Hot Topic
     {
       id: 1,
-      title: 'นักว่ายน้ำไทยทำลายสถิติเอเชียนเกมส์',
-      content: 'นักว่ายน้ำทีมชาติไทยสร้างประวัติศาสตร์คว้าเหรียญทองพร้อมทำลายสถิติในการแข่งขันเอเชียนเกมส์ 2024',
+      title: 'Thai Swimmer Breaks Asian Games Record',
+      content: 'Thai national swimming team makes history by breaking records and winning gold medals at the 2024 Asian Games',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635',
       timestamp: '2 Hours Ago',
       isHot: true
@@ -42,64 +42,64 @@ export function News() {
     // Latest News
     {
       id: 2,
-      title: 'การแข่งขันฟันดาบระดับนานาชาติ',
-      content: 'การแข่งขันฟันดาบชิงแชมป์เอเชียจัดขึ้นที่กรุงเทพฯ',
+      title: 'International Fencing Championship',
+      content: 'Asian Fencing Championship hosted in Bangkok',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1614886137686-181bab6ae68f',
       timestamp: '1 Hour Ago'
     },
     {
       id: 3,
-      title: 'การแข่งขันวิ่งมาราธอนระดับโลก',
-      content: 'นักวิ่งจากทั่วโลกร่วมการแข่งขันมาราธอนที่กรุงเทพฯ',
+      title: 'Global Marathon Event',
+      content: 'International runners gather in Bangkok for marathon competition',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5',
       timestamp: '1 Hour Ago'
     },
     {
       id: 4,
-      title: 'การแข่งขันว่ายน้ำระดับเยาวชน',
-      content: 'เยาวชนไทยโชว์ฟอร์มเยี่ยมในการแข่งขันว่ายน้ำ',
+      title: 'Youth Swimming Competition',
+      content: 'Thai youth showcase exceptional performance in swimming competition',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487',
       timestamp: '1 Hour Ago'
     },
     {
       id: 5,
-      title: 'การแข่งขันว่ายน้ำโอลิมปิก',
-      content: 'ทีมว่ายน้ำไทยเตรียมความพร้อมสู่โอลิมปิก',
+      title: 'Olympic Swimming Preparation',
+      content: 'Thai swimming team prepares for upcoming Olympics',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635',
       timestamp: '1 Hour Ago'
     },
     {
       id: 6,
-      title: 'การแข่งขันบาสเกตบอล NBA',
-      content: 'ไฮไลท์การแข่งขัน NBA ประจำสัปดาห์',
+      title: 'NBA Basketball Tournament',
+      content: 'Weekly highlights from NBA basketball matches',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc',
       timestamp: '1 Hour Ago'
     },
     {
       id: 7,
-      title: 'การแข่งขันเซิร์ฟบอร์ดระดับโลก',
-      content: 'นักเซิร์ฟชาวไทยสร้างชื่อในการแข่งขันระดับโลก',
+      title: 'World Surfing Championship',
+      content: 'Thai surfer makes waves in international competition',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f',
       timestamp: '1 Hour Ago'
     },
     {
       id: 8,
-      title: 'การแข่งขันจักรยานทางไกล',
-      content: 'นักปั่นจักรยานไทยคว้าแชมป์การแข่งขันระดับเอเชีย',
+      title: 'Long Distance Cycling Race',
+      content: 'Thai cyclist wins Asian championship title',
       source: 'CNN Indonesia',
-      category: 'กีฬา',
+      category: 'Sports',
       image: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182',
       timestamp: '1 Hour Ago'
     }
@@ -111,7 +111,7 @@ export function News() {
   const filteredNews = latestNews.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          item.content.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'ทั้งหมด' || item.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -123,7 +123,7 @@ export function News() {
           <div className="relative mb-6">
             <input
               type="text"
-              placeholder="ค้นหาข่าว..."
+              placeholder="Search news..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -173,12 +173,12 @@ export function News() {
               </div>
               <div className="flex items-center">
                 <div>
-                  <h3 className="text-4xl font-bold mb-4">Nisi,</h3>
+                  <h3 className="text-4xl font-bold mb-4">Breaking News</h3>
                   <p className="text-gray-600 text-lg leading-relaxed">
                     {hotTopic.content}
                   </p>
                   <Link to={`/news/${hotTopic.id}`} className="text-blue-600 hover:text-blue-700 mt-4 inline-block">
-                    read more
+                    Read more
                   </Link>
                 </div>
               </div>
