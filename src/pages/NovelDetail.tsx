@@ -16,6 +16,37 @@ export function NovelDetail() {
 
   const novel = getNovelById(parseInt(id || '0'));
 
+  // Mock chapter content data
+  const chapters = [
+    {
+      id: 1,
+      title: 'บทที่ 1: จุดเริ่มต้น',
+      content: `ในคืนที่ดวงจันทร์เต็มดวง แสงสีเงินสาดส่องลงมายังตัวเมืองเก่าแก่แห่งนี้ เสียงลมพัดผ่านใบไม้ดังกรอบแกรบ สร้างบรรยากาศที่ชวนให้นึกถึงเรื่องราวโบราณ ณ มุมหนึ่งของเมือง มีร้านหนังสือเล็กๆ ที่ซ่อนตัวอยู่ในตรอกแคบ แสงไฟสลัวส่องผ่านหน้าต่างบานเก่า...
+
+เอมิลี่ยืนอยู่หน้าชั้นหนังสือ นิ้วเรียวบางไล้ไปตามสันหนังสือเก่าๆ ฝุ่นจับตามร่องนิ้ว กลิ่นอายของกระดาษเก่าและหมึกพิมพ์ลอยอวลในอากาศ เธอรู้สึกถึงพลังบางอย่างที่แผ่ซ่านออกมาจากหนังสือเล่มหนึ่ง มันเรียกร้องให้เธอหยิบมันขึ้นมา...`,
+      duration: '20:00',
+      audioUrl: 'https://botnoi-dictionary.s3.amazonaws.com:443/b8e1606040b004decd4337636bc9324ee74e191ad00e7e8a90ca4a1f84083972_02052025093400335975.m4a'
+    },
+    {
+      id: 2,
+      title: 'บทที่ 2: การเดินทาง',
+      content: `แสงอาทิตย์ยามเช้าสาดส่องผ่านหน้าต่างบานเล็ก เอมิลี่ลืมตาตื่นขึ้นมาพบว่าตัวเองนอนหลับอยู่บนโต๊ะในห้องสมุด หนังสือปริศนาเล่มนั้นวางอยู่ตรงหน้า หน้ากระดาษเปิดอ้าเผยให้เห็นแผนที่โบราณที่เธอไม่เคยเห็นมาก่อน
+
+ลายเส้นสีทองบนแผนที่เริ่มเรืองแสง เส้นทางลึกลับปรากฏขึ้น นำไปสู่สถานที่ที่เธอไม่เคยรู้จัก เอมิลี่รู้ดีว่านี่คือจุดเริ่มต้นของการผจญภัยครั้งใหม่...`,
+      duration: '18:30',
+      audioUrl: 'https://example.com/chapter2.mp3'
+    },
+    {
+      id: 3,
+      title: 'บทที่ 3: การค้นพบ',
+      content: `ป่าทึบตรงหน้าดูน่าขนลุก เสียงนกร้องแปลกๆ ดังมาจากที่ไกลๆ เอมิลี่กำแผนที่ในมือแน่น เธอรู้ว่าจุดหมายอยู่ไม่ไกล ตามแผนที่ระบุว่ามีวิหารโบราณซ่อนอยู่กลางป่าแห่งนี้
+
+เธอเดินลึกเข้าไปในป่า ต้นไม้สูงใหญ่บดบังแสงอาทิตย์ ทำให้รอบข้างมืดสลัว แต่แสงสีทองจากแผนที่ยังคงนำทางเธอไป สัญชาตญาณบอกว่าเธอกำลังเข้าใกล้ความจริงบางอย่าง...`,
+      duration: '22:15',
+      audioUrl: 'https://example.com/chapter3.mp3'
+    }
+  ];
+
   if (!novel) {
     return (
       <div className="min-h-screen bg-gray-50 pt-24">
@@ -34,13 +65,6 @@ export function NovelDetail() {
       </div>
     );
   }
-
-  const chapters = Array.from({ length: novel.chapters }, (_, i) => ({
-    id: i + 1,
-    title: `บทที่ ${i + 1}`,
-    duration: '20:00',
-    audioUrl: 'https://example.com/chapter.mp3'
-  }));
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -223,37 +247,47 @@ export function NovelDetail() {
           </div>
         </div>
 
-        {/* Chapter List */}
+        {/* Chapter List with Content */}
         <div className="mt-8 bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4">รายการตอน</h2>
-          <div className="space-y-4">
+          <div className="space-y-6">
             {chapters.map((chapter, index) => (
               <div
                 key={chapter.id}
-                className={`p-4 rounded-lg transition-colors ${
+                className={`p-6 rounded-lg transition-colors ${
                   currentChapter === index
                     ? 'bg-blue-50 border border-blue-200'
-                    : 'hover:bg-gray-50'
+                    : 'bg-gray-50 hover:bg-gray-100'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="font-medium">{chapter.title}</h3>
+                    <h3 className="text-xl font-semibold">{chapter.title}</h3>
                     <p className="text-sm text-gray-500">ความยาว: {chapter.duration}</p>
                   </div>
                   <button
                     onClick={() => setCurrentChapter(index)}
-                    className="text-blue-600 hover:text-blue-700"
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     {currentChapter === index && isPlaying ? 'กำลังเล่น' : 'เล่น'}
                   </button>
                 </div>
-                <div className="mt-2">
+
+                {/* Chapter Content */}
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 whitespace-pre-line mb-4">
+                    {chapter.content}
+                  </p>
+                </div>
+
+                {/* Notes Section */}
+                <div className="mt-4">
+                  <h4 className="font-medium mb-2">บันทึกของคุณ</h4>
                   <textarea
                     placeholder="เพิ่มโน้ตของคุณที่นี่..."
                     value={chapterNotes[chapter.id] || ''}
                     onChange={(e) => handleNoteChange(chapter.id, e.target.value)}
-                    className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     rows={3}
                   />
                 </div>
