@@ -272,22 +272,22 @@ export function Hero() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  name: 'John Smith',
+                  name: 'TN Mobile S',
                   role: 'Developer',
                   image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d'
                 },
                 {
-                  name: 'Michael Johnson',
+                  name: 'TN Back-end Ryuu ',
                   role: 'Developer',
                   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
                 },
                 {
-                  name: 'David Wilson',
+                  name: 'TN UX/UI Pat',
                   role: 'UX/UI Designer',
                   image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d'
                 },
                 {
-                  name: 'Emma Davis',
+                  name: 'TN UX/UI Mei',
                   role: 'UX/UI Designer',
                   image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956'
                 }

@@ -13,6 +13,7 @@ import { News } from './pages/News';
 import { Status } from './pages/Status';
 import { Profile } from './pages/Profile';
 import { Payment } from './pages/Payment';
+import { Membership } from './pages/Membership';
 
 function HomePage() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/status" element={<Status />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/membership" element={<Membership />} />
         </Routes>
       </main>
       <Footer />
