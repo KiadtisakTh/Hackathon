@@ -10,7 +10,6 @@ export function NovelDetail() {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(1);
   const [currentChapter, setCurrentChapter] = useState(0);
-  const [chapterNotes, setChapterNotes] = useState<{ [key: number]: string }>({});
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -34,7 +33,7 @@ export function NovelDetail() {
 
 ลายเส้นสีทองบนแผนที่เริ่มเรืองแสง เส้นทางลึกลับปรากฏขึ้น นำไปสู่สถานที่ที่เธอไม่เคยรู้จัก เอมิลี่รู้ดีว่านี่คือจุดเริ่มต้นของการผจญภัยครั้งใหม่...`,
       duration: '18:30',
-      audioUrl: 'https://example.com/chapter2.mp3'
+      audioUrl: 'https://botnoi-dictionary.s3.amazonaws.com/b8e1606040b004decd4337636bc9324ee74e191ad00e7e8a90ca4a1f84083972_02062025044905856480.m4a'
     },
     {
       id: 3,
@@ -43,7 +42,7 @@ export function NovelDetail() {
 
 เธอเดินลึกเข้าไปในป่า ต้นไม้สูงใหญ่บดบังแสงอาทิตย์ ทำให้รอบข้างมืดสลัว แต่แสงสีทองจากแผนที่ยังคงนำทางเธอไป สัญชาตญาณบอกว่าเธอกำลังเข้าใกล้ความจริงบางอย่าง...`,
       duration: '22:15',
-      audioUrl: 'https://example.com/chapter3.mp3'
+      audioUrl: 'https://botnoi-dictionary.s3.amazonaws.com/b8e1606040b004decd4337636bc9324ee74e191ad00e7e8a90ca4a1f84083972_02062025045125100243.m4a'
     }
   ];
 
@@ -97,13 +96,6 @@ export function NovelDetail() {
     if (audioRef.current) {
       audioRef.current.currentTime = time;
     }
-  };
-
-  const handleNoteChange = (chapterId: number, note: string) => {
-    setChapterNotes(prev => ({
-      ...prev,
-      [chapterId]: note
-    }));
   };
 
   const formatTime = (time: number) => {
@@ -278,18 +270,6 @@ export function NovelDetail() {
                   <p className="text-gray-700 whitespace-pre-line mb-4">
                     {chapter.content}
                   </p>
-                </div>
-
-                {/* Notes Section */}
-                <div className="mt-4">
-                  <h4 className="font-medium mb-2">บันทึกของคุณ</h4>
-                  <textarea
-                    placeholder="เพิ่มโน้ตของคุณที่นี่..."
-                    value={chapterNotes[chapter.id] || ''}
-                    onChange={(e) => handleNoteChange(chapter.id, e.target.value)}
-                    className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    rows={3}
-                  />
                 </div>
               </div>
             ))}
