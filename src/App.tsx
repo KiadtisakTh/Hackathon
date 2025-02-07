@@ -9,7 +9,9 @@ import { Novels } from './pages/Novels';
 import { CategoryView } from './pages/CategoryView';
 import { NovelDetail } from './pages/NovelDetail';
 import { Articles } from './pages/Articles';
+import { ArticleDetail } from './pages/ArticleDetail';
 import { News } from './pages/News';
+import { NewsDetail } from './pages/NewsDetail';
 import { Status } from './pages/Status';
 import { Profile } from './pages/Profile';
 import { Payment } from './pages/Payment';
@@ -37,7 +39,9 @@ function App() {
           <Route path="/category/:category" element={<CategoryView />} />
           <Route path="/novels/:id" element={<NovelDetail />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/status" element={<Status />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/payment" element={<Payment />} />

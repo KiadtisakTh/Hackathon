@@ -174,10 +174,13 @@ export function News() {
               <div className="flex items-center">
                 <div>
                   <h3 className="text-4xl font-bold mb-4">Breaking News</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
+                  <p className="text-gray-600 text-lg leading-relaxed mb-4">
                     {hotTopic.content}
                   </p>
-                  <Link to={`/news/${hotTopic.id}`} className="text-blue-600 hover:text-blue-700 mt-4 inline-block">
+                  <Link 
+                    to={`/news/${hotTopic.id}`} 
+                    className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
                     Read more
                   </Link>
                 </div>
@@ -192,7 +195,7 @@ export function News() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredNews.map((item) => (
               <Link key={item.id} to={`/news/${item.id}`} className="group">
-                <div className="bg-white rounded-lg overflow-hidden">
+                <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="relative h-48">
                     <img
                       src={item.image}
@@ -204,6 +207,7 @@ export function News() {
                     <h3 className="font-bold text-xl mb-2 group-hover:text-blue-600 transition-colors">
                       {item.title}
                     </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2">{item.content}</p>
                     <div className="flex items-center text-sm text-gray-500">
                       <Clock className="h-4 w-4 mr-1" />
                       <span>{item.timestamp}</span>
