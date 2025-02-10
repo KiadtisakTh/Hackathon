@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Pencil, User, ChevronDown } from 'lucide-react';
+import { Pencil, User, ChevronDown, Menu, X } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export function Navbar() {
   const { user, signOut } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const isActive = (path: string) => {
@@ -27,8 +32,22 @@ export function Navbar() {
             </Link>
           </div>
           
-          {/* Navigation Links */}
-          <div className="flex items-center space-x-1">
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="text-gray-300 hover:text-white"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
             <Link
               to="/articles"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -145,6 +164,80 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-gray-900 pb-4 px-4">
+          <div className="space-y-2">
+            <Link
+              to="/articles"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive('/articles')
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              Articles
+            </Link>
+            <Link
+              to="/novels"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive('/novels')
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              Novels
+            </Link>
+            <Link
+              to="/news"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive('/news')
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              News
+            </Link>
+            <Link
+              to="/status"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive('/status')
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              Posts
+            </Link>
+            <Link
+              to="/membership"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive('/membership')
+                  ? 'bg-blue-700 text-white'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+            >
+              Create
+            </Link>
+            {!user && (
+              <>
+                <Link
+                  to="/login"
+                  className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  className="block px-3 py-2 rounded-md text-base font-medium bg-gray-700 text-white hover:bg-gray-800 transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -178,8 +178,8 @@ export function Membership() {
                     MP3, WAV up to 50MB
                   </p>
                   {!novelData.audioFile && (
-                    <p className="text-sm text-blue-600 hover:text-blue-700 cursor-pointer mt-2">
-                      No audio yet? Record here
+                    <p className="text-sm text-black">
+                      No audio yet? <a href="https://voice.botnoi.ai/" target="_blank" class="text-blue-600 hover:text-blue-700 cursor-pointer mt-2">Record here</a>
                     </p>
                   )}
                 </div>

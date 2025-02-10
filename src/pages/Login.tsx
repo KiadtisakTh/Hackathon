@@ -19,8 +19,8 @@ export function Login() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      alert('Login successful!'); // Notify the user of successful login
-      navigate('/profile'); // Redirect to profile page after successful login
+      alert('Login successful!');
+      navigate('/profile');
     } catch (err: any) {
       setError(err.message || 'An unexpected error occurred. Please try again.');
     } finally {
@@ -29,8 +29,9 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      <div className="w-1/2 bg-white flex flex-col items-center justify-center p-12">
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left Section - Hidden on mobile */}
+      <div className="hidden lg:flex lg:w-1/2 bg-white flex-col items-center justify-center p-12">
         <div className="relative mb-8">
           <div className="w-32 h-32 bg-[#7C3AED] rounded-full flex items-center justify-center">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +44,8 @@ export function Login() {
         <p className="text-gray-600">T T S</p>
       </div>
 
-      <div className="w-1/2 bg-white flex items-center justify-center p-12">
+      {/* Right Section */}
+      <div className="w-full lg:w-1/2 bg-white flex items-center justify-center p-6 lg:p-12">
         <div className="max-w-md w-full">
           <h2 className="text-3xl font-bold mb-2">Sign In</h2>
           <p className="text-gray-500 mb-8">Welcome back! Please sign in to your account.</p>

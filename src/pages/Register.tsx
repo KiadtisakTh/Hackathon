@@ -35,7 +35,6 @@ export function Register() {
     }
   
     try {
-      // ตรวจสอบว่าอีเมลนี้ถูกใช้งานแล้วในตาราง auth.users
       const { data: userCheck } = await supabase
         .from('users')
         .select('email')
@@ -48,7 +47,6 @@ export function Register() {
         return;
       }
   
-      // ลงทะเบียนผู้ใช้โดยใช้ Supabase authentication
       const { data: { user }, error: signUpError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password
@@ -60,20 +58,18 @@ export function Register() {
         return;
       }
   
-      // บันทึกข้อมูลโปรไฟล์ในตาราง profiles
       const { error: insertError } = await supabase
-      .from('users')  // Change to 'users' table
-      .insert([
-        {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          date_of_birth: formData.dateOfBirth,
-          password: formData.password // or hashed password if required
-        }
-      ]);
+        .from('users')
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            date_of_birth: formData.dateOfBirth,
+            password: formData.password
+          }
+        ]);
     
-  
       if (insertError) {
         console.error('Error saving profile:', insertError);
         setError(`Error saving profile: ${insertError.message}`);
@@ -89,7 +85,6 @@ export function Register() {
       setLoading(false);
     }
   };
-  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -100,8 +95,9 @@ export function Register() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      <div className="w-1/2 bg-blue-600 flex flex-col items-center justify-center p-12 text-white">
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left Section - Hidden on mobile */}
+      <div className="hidden lg:flex lg:w-1/2 bg-blue-600 flex-col items-center justify-center p-12 text-white">
         <h2 className="text-3xl font-bold mb-6">Social media shared today, tomorrow or by location</h2>
         <div className="relative w-72 h-[500px]">
           <div className="absolute inset-0 transform rotate-[-10deg]">
@@ -114,7 +110,8 @@ export function Register() {
         </div>
       </div>
 
-      <div className="w-1/2 bg-white flex items-center justify-center p-12">
+      {/* Right Section */}
+      <div className="w-full lg:w-1/2 bg-white flex items-center justify-center p-6 lg:p-12">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <img
@@ -133,7 +130,7 @@ export function Register() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <input
                   type="text"
@@ -200,8 +197,8 @@ export function Register() {
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+              <label className="flex items-center mb-2 sm:mb-0">
                 <input
                   type="checkbox"
                   name="rememberMe"
@@ -216,13 +213,13 @@ export function Register() {
               </Link>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-start sm:items-center">
               <input
                 type="checkbox"
                 name="termsAccepted"
                 checked={formData.termsAccepted}
                 onChange={handleChange}
-                className="mr-2"
+                className="mr-2 mt-1 sm:mt-0"
               />
               <span className="text-sm text-gray-600">
                 I agree to all the{' '}
